@@ -1,12 +1,7 @@
 <?php
 
 include "php_code.php";
-
-//Search box value assigning to $Name variable.
-
-   $Name = $_POST['search'];
-
-//Search query.
+$Name = $_POST['search'];
 
    if(isset($Name)){
     $Query = "SELECT * FROM info WHERE Name LIKE '%$Name%'";}
@@ -14,14 +9,7 @@ include "php_code.php";
     $Query = "SELECT * FROM info ";
    }
 
-
-//Query execution
-
    $ExecQuery = mysqli_query($db, $Query);
-
-//Creating unordered list to display result.
-
-   //Fetching result from database.
 
    while ($row = MySQLi_fetch_array($ExecQuery)) {
 
@@ -36,6 +24,4 @@ include "php_code.php";
         <a href="index.php?del=<?php echo $row['id']; ?>" class="del_btn">Delete</a>
       </td>
      </tr> 
-   <!-- Below php code is just for closing parenthesis. Don't be confused. -->
-
    <?php } ?>
