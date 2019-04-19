@@ -22,7 +22,7 @@
 
 <?php //search ajax ?>
 <div class="searchbox">
-   <input type="text" id="search" placeholder="Search" />
+   <input type="text" id="searchtxt" placeholder="Search" />
    <div id="display"></div>
 </div>
 

@@ -3,57 +3,42 @@
 
 $(document).ready(function() {
 
-         $.post("listsinfo.php",function(postresult){
-          $("#viewset2").append(postresult);
-        });
+ load_tbl();
 
-   //On pressing a key on "Search box" in "search.php" file. This function will be called.
+   $("#searchtxt").keyup(function() {
+      load_tbl(); 
 
-   $("#search").keyup(function() {
+   });
 
-       //Assigning search box value to javascript variable named as "name".
 
-       var name = $('#search').val();
+function load_tbl() {
+      var name = $('#searchtxt').val();
 
        //Validating, if "name" is empty.
-
-       if (name == "") {
-
-
-       }
-
-       //If name is not empty.
-
-       else {
-
-           //AJAX is called.
 
            $.ajax({
                type: "POST",
                url: "search.php",
-               //Data, that will be sent to "ajax.php".
-
                data: {
-                   search: name
+                   searchtxt: name
 
                },
 
-               //If result found, this funtion will be called.
-
                success: function(data) {
+                $("#viewset2").html(data).show();
 
-                  console.log(data);
-                   //Assigning result to "display" div in "search.php" file.
+               } });
 
-                   $("#viewset2").html(data).show();
+  } 
 
-               }
 
-           });
+function confirmationDelete(anchor)
+{
+   var conf = confirm('Are you sure want to delete this record?');
+   if(conf)
+      window.location=anchor.attr("href");
+}
 
-       }
-
-   });
 
 });
 
