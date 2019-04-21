@@ -27,36 +27,40 @@
 </div>
 
 
-
-<?//php $results = mysqli_query($db, "SELECT * FROM info"); ?>
 <table>
 	<thead>
 		<tr>
 			<th>Name</th>
 			<th>Address</th>
-			<th colspan="2">Action</th>
+			<th>Profile Pic</th>
+			<th>Action</th>
+			<th colspan ="2"></th>
 		</tr>
 	</thead>
 	<tbody id="viewset2">		
 	</tbody>
-
-	<?php //while ($row = mysqli_fetch_array($results)) { ?>
-		<!--<tr id="viewset2">
-			<td><?php echo $row['name']; ?></td>
-			<td><?php echo $row['address']; ?></td>
-			<td>
-				<a href="index.php?edit=<?php echo $row['id']; ?>" class="edit_btn" >Edit</a>
-			</td>
-			<td>
-				<a href="index.php?del=<?php echo $row['id']; ?>" class="del_btn">Delete</a>
-			</td>
-		</tr>-->
-	<?php //} ?>
 </table>
 
 
 
-<form method="post" action="php_code.php" >
+<form method="post" action="php_code.php" enctype="multipart/form-data" >
+	<div class="input-group">
+		<div class="profile-pic">
+			<?php if($update == true): $imvar = base64_encode($imgedit);?>
+				<img id="profileset" 
+					<?php if ($imvar): ?>
+					src="data:image/jpeg;base64,<?php echo $imvar; ?>"
+					<?php else: ?>
+					src="img/profile.jpg"
+					<?php endif; ?>	
+					 height="150" >
+			<?php else: ?>
+				<img id="profileset"  src="img/profile.jpg" height="150">	 
+			<?php endif; ?>
+
+		</div>
+		<input type="file" name="image" id="imagefile" onchange="previewFile()" /> 
+	</div>
 	<div class="input-group">
 		<label>Name</label>
 		<input type="hidden" name="id" value="<?php echo $id; ?>">
@@ -74,6 +78,10 @@
 		<?php endif ?>
 	</div>
 </form>
+
+<footer>
+	<script src="js/footjs.js"></script>
+</footer>
 
 </body>
 </html>
