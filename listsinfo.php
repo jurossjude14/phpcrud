@@ -1,30 +1,30 @@
 <?php
 
 include "php_code.php";
-$Query = "SELECT * FROM info ";
-   
+if(isset($_POST['searchtxt2'])){
+$Name = $_POST['searchtxt2']; }
 
-//Query execution
+   if(isset($Name)){ $Query = "SELECT * FROM info WHERE Name LIKE '%$Name%'";}
+   else { $Query = "SELECT * FROM info "; }
 
    $ExecQuery = mysqli_query($db, $Query);
-
-//Creating unordered list to display result.
-
-   //Fetching result from database.
 
    while ($row = MySQLi_fetch_array($ExecQuery)) {
 
        ?>
-       <tr>
+     <tr>  
         <td><?php echo $row['name']; ?></td>
         <td><?php echo $row['address']; ?></td>
         <td>
-          <a href="index.php?edit=<?php echo $row['id']; ?>" class="edit_btn" >Edit</a>
-        </td>
+            <?php if ($row['imgname']): $imvar = base64_encode($row['imgname']); ?>
+              <img src="data:image/jpeg;base64,<?php echo $imvar; ?>" height="50" width="50" class="img-thumnail" />
+            <?php else: ?>
+              <img src="img/profile.jpg" height="50" width="50" class="img-thumnail" />            
+            <?php endif; ?>
+        </td>  
         <td>
-          <a href="index.php?del=<?php echo $row['id']; ?>" class="del_btn">Delete</a>
+          <a href="index.php?edit=<?php echo $row['id']; ?>" class="edit_btn" >view</a>
         </td>
-      </tr>
-   <!-- Below php code is just for closing parenthesis. Don't be confused. -->
-
+     </tr> 
    <?php } ?>
+

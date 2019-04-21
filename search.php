@@ -23,10 +23,10 @@ $Name = $_POST['searchtxt']; }
             <?php endif; ?>
         </td>  
         <td>
-          <a href="index.php?edit=<?php echo $row['id']; ?>" class="edit_btn" >Edit</a>
+          <a href="admin.php?edit=<?php echo $row['id']; ?>" class="edit_btn" >Edit</a>
         </td>
         <td>
-          <a href="index.php?del=<?php echo $row['id']; ?>" onclick="return confirm('are you sure you want to delele?')" class="del_btn">Delete</a>
+          <a href="admin.php?del=<?php echo $row['id']; ?>" onclick="return confirm('are you sure you want to delele?')" class="del_btn">Delete</a>
         </td>
      </tr> 
    <?php } ?>

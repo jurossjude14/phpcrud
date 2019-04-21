@@ -32,12 +32,35 @@ function load_tbl() {
   } 
 
 
-function confirmationDelete(anchor)
-{
-   var conf = confirm('Are you sure want to delete this record?');
-   if(conf)
-      window.location=anchor.attr("href");
-}
+
+ load_tbl2();
+
+   $("#searchtxt2").keyup(function() {
+      load_tbl2(); 
+
+   });
+
+
+function load_tbl2() {
+      var name2 = $('#searchtxt2').val();
+
+       //Validating, if "name" is empty.
+
+           $.ajax({
+               type: "POST",
+               url: "listsinfo.php",
+               data: {
+                   searchtxt2:name2
+
+               },
+
+               success: function(data) {
+                $("#viewset3").html(data).show();
+
+               } });
+
+  } 
+
 
 
 

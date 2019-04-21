@@ -11,6 +11,16 @@
 </head>
 <body>
 
+
+<?php //search ajax ?>
+<div class="headtag">
+<h1 class="setcenter"> Renting Inquiry  Form </h1>
+</div>
+<div class="searchbox">
+   <input type="text" id="searchtxt2" placeholder="Search" />
+   <div id="display"></div>
+</div>
+
 <?php if (isset($_SESSION['message'])): ?>
 	<div class="msg">
 		<?php 
@@ -20,14 +30,10 @@
 	</div>
 <?php endif ?>
 
-<?php //search ajax ?>
-<div class="searchbox">
-   <input type="text" id="searchtxt" placeholder="Search" />
-   <div id="display"></div>
-</div>
+<div class="container">
 
 
-<table>
+<table class="gird-half">
 	<thead>
 		<tr>
 			<th>Name</th>
@@ -37,13 +43,13 @@
 			<th colspan ="2"></th>
 		</tr>
 	</thead>
-	<tbody id="viewset2">		
+	<tbody id="viewset3">		
 	</tbody>
 </table>
 
 
 
-<form method="post" action="php_code.php" enctype="multipart/form-data" >
+<form class="grid-half" method="post" action="php_code.php" enctype="multipart/form-data" >
 	<div class="input-group">
 		<div class="profile-pic">
 			<?php if($update == true): $imvar = base64_encode($imgedit);?>
@@ -59,7 +65,6 @@
 			<?php endif; ?>
 
 		</div>
-		<input type="file" name="image" id="imagefile" onchange="previewFile()" /> 
 	</div>
 	<div class="input-group">
 		<label>Name</label>
@@ -70,14 +75,20 @@
 		<label>Address</label>
 		<input type="text" name="address" value="<?php echo $address; ?>">
 	</div>
+	<hr>
 	<div class="input-group">
-		<?php if ($update == true): ?>
-			<button class="btn" type="submit" name="update" style="background: #556B2F;" >update</button>
-		<?php else: ?>
-			<button class="btn" type="submit" name="save" >Save</button>
-		<?php endif ?>
+		<label>Message</label>
+		<textarea type="text" name="inqmsg" value=""></textarea>
+	</div>
+	<div class="input-group">
+		<label>Inquiry Name:</label>
+		<input type="text" name="inqname" value="">
+	</div>
+	<div class="input-group">
+		<button class="btn" type="submit" name="inqadd" >Inquiry</button>
 	</div>
 </form>
+</div>
 
 <footer>
 	<script src="js/footjs.js"></script>

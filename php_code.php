@@ -15,6 +15,19 @@
 
 		mysqli_query($db, "INSERT INTO info (name, address, imgname) VALUES ('$name', '$address','$file')"); 
 		$_SESSION['message'] = "Address saved"; 
+		header('location: admin.php');
+	}
+
+	if (isset($_POST['inqadd'])) {
+		$inqid = $_POST['id'];
+		$name = $_POST['name'];
+		$address = $_POST['address'];
+		$inqmessage = $_POST['inqmsg'];
+		$inqname = $_POST['inqname'];
+		
+
+		mysqli_query($db, "INSERT INTO inqtbl (inqid,name,address,inqmessage,inqname) VALUES ('$inqid','$name', '$address','$inqmessage','$inqname')"); 
+		$_SESSION['message'] = "Inquiry Added"; 
 		header('location: index.php');
 	}
 
@@ -27,7 +40,7 @@
 
 		mysqli_query($db, "UPDATE info SET name='$name', address='$address', imgname='$imgname' WHERE id=$id");
 		$_SESSION['message'] = "Address updated!"; 
-		header('location: index.php');
+		header('location: admin.php');
 	}
 
 
@@ -35,7 +48,7 @@
 		$id = $_GET['del'];
 		mysqli_query($db, "DELETE FROM info WHERE id=$id");
 		$_SESSION['message'] = "Address deleted!"; 
-		header('location: index.php');
+		header('location: admin.php');
 	}
 
 	if (isset($_GET['edit'])) {
