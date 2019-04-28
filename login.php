@@ -31,6 +31,12 @@ if(isset($_POST['submit'])) {
             $_SESSION['valid'] = $validuser;
             $_SESSION['name'] = $row['name'];
             $_SESSION['id'] = $row['id'];
+
+            if (!empty($_POST['remember'])) {
+			    setcookie ("member_user",$user,time()+ (10 * 365 * 24 * 60 * 60));  
+			    setcookie ("member_password",$pass,time()+ (10 * 365 * 24 * 60 * 60));            	
+            }
+
         } else {
             echo "Invalid username or password.";
             echo "<br/>";
@@ -47,11 +53,15 @@ if(isset($_POST['submit'])) {
         <table width="75%" border="0">
             <tr> 
                 <td width="10%">Username</td>
-                <td><input type="text" name="username"></td>
+                <td><input type="text" name="username" value="<?php if(isset($_COOKIE["member_user"])) { echo $_COOKIE["member_user"]; } ?>"></td>
             </tr>
             <tr> 
                 <td>Password</td>
-                <td><input type="password" name="password"></td>
+                <td><input type="password" name="password" value="<?php if(isset($_COOKIE["member_password"])) { echo $_COOKIE["member_password"]; } ?>"></td>
+            </tr>
+            <tr> 
+<td><input type="checkbox" name="remember" <?php if(isset($_COOKIE["member_login"])) { ?> checked <?php } ?> /></td>
+				<td>Remember Me</td>
             </tr>
             <tr> 
                 <td>&nbsp;</td>
